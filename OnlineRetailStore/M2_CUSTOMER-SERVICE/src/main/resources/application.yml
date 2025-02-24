@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: M2_CUSTOMER-SERVICE
+  datasource:
+    url: jdbc:mysql://localhost:3306/M2_CUSTOMER_DB?useSSL=false&serverTimezone=UTC
+    username: root
+    password: YVbhargav@962
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: 'update '
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: 'true'
+eureka:
+  instance:
+    prefer-ip-address: true # Register with IP address instead of hostname
+  client:
+      fetch-registry: true        # Enable fetching the registry from Eureka
+      register-with-eureka: true  # Enable registration with Eureka
+      service-url:
+        defaultZone: http://localhost:8761/eureka/   
+  
