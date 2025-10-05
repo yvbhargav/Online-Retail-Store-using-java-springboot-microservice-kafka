@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ServiceRegistry" />
+      </profile>
+      <profile name="Annotation profile for M2_INVENTRY-SERVICE" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="M2-ORDER-SERVICE" />
+        <module name="M2_CUSTOMER-SERVICE" />
+        <module name="M2_PRODUCT-SERVICE" />
+        <module name="M2_INVENTRY-SERVICE" />
+        <module name="M2-CART-SERVICE" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="M2-CART-SERVICE" options="-parameters" />
+      <module name="M2-ORDER-SERVICE" options="-parameters" />
+      <module name="M2_CUSTOMER-SERVICE" options="-parameters" />
+      <module name="M2_INVENTRY-SERVICE" options="-parameters" />
+      <module name="M2_PRODUCT-SERVICE" options="-parameters" />
+      <module name="ServiceRegistry" options="-parameters" />
+    </option>
+  </component>
+</project>
