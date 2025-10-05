@@ -3,16 +3,15 @@ package com.example.M2_CUSTOMER_SERVICE.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.M2_CUSTOMER_SERVICE.DTO.CustomerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.M2_CUSTOMER_SERVICE.DTO.CustomerRequest;
 import com.example.M2_CUSTOMER_SERVICE.Entity.Customer;
 import com.example.M2_CUSTOMER_SERVICE.Entity.CustomerAddress;
-import com.example.M2_CUSTOMER_SERVICE.Repository.CustomerAddressRepository;
 import com.example.M2_CUSTOMER_SERVICE.Repository.CustomerRepository;
 
 @Service
@@ -28,7 +27,7 @@ public class CustomerService {
 	    private KafkaTemplate<String, Object> kafkaTemplate;
 	 
 	 @Transactional
-	public Customer createcustomer(CustomerRequest customerrequest) {
+	public String createcustomer(CustomerRequest customerrequest) {
 		Customer customer = new Customer();
 		customer.setCustomername(customerrequest.getCustomername());
 		customer.setCustomeremail(customerrequest.getCustomeremail());
@@ -53,7 +52,7 @@ public class CustomerService {
 		customer.setCustomeraddresslist(calistdb);
 		Customer c= customerRepository.save(customer);
 		kafkaTemplate.send(topicname,String.valueOf(c.getCustomerid()));
-		return c;
+		return c.getCustomername();
 	}
 	public Customer get(Long customerid) {
 		Customer customer = customerRepository.findById(customerid).orElseThrow(()-> new RuntimeException("customer not found"));
