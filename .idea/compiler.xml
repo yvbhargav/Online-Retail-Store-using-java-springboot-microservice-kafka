@@ -8,7 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ServiceRegistry" />
       </profile>
-      <profile name="Annotation profile for M2_INVENTRY-SERVICE" enabled="true">
+      <profile name="Annotation profile for M2_PRODUCT-SERVICE" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
