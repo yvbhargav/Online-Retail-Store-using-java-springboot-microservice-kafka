@@ -22,7 +22,7 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	@PostMapping("/post")
-	public ResponseEntity<String> createcustomer(@RequestBody CustomerRequest customerrequest) {
+	public ResponseEntity<Customer> createcustomer(@RequestBody CustomerRequest customerrequest) {
 		return  ResponseEntity.status(HttpStatus.OK).body(customerService.createcustomer(customerrequest));
 	}
 	@GetMapping("/get/{customerid}")

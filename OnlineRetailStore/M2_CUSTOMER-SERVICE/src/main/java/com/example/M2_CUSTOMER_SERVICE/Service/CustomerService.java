@@ -27,7 +27,7 @@ public class CustomerService {
 	    private KafkaTemplate<String, Object> kafkaTemplate;
 	 
 	 @Transactional
-	public String createcustomer(CustomerRequest customerrequest) {
+	public Customer createcustomer(CustomerRequest customerrequest) {
 		Customer customer = new Customer();
 		customer.setCustomername(customerrequest.getCustomername());
 		customer.setCustomeremail(customerrequest.getCustomeremail());
@@ -52,7 +52,7 @@ public class CustomerService {
 		customer.setCustomeraddresslist(calistdb);
 		Customer c= customerRepository.save(customer);
 		kafkaTemplate.send(topicname,String.valueOf(c.getCustomerid()));
-		return c.getCustomername();
+		return c;
 	}
 	public Customer get(Long customerid) {
 		Customer customer = customerRepository.findById(customerid).orElseThrow(()-> new RuntimeException("customer not found"));
