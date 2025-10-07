@@ -2,6 +2,7 @@ package com.example.M2_ORDER_SERVICE.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,8 +107,23 @@ public class OrderService {
 	}
 	public Order getbyorderid(Long orderid) {
 
-		Order order =orderRepository.findById(orderid).orElseThrow(()-> new RuntimeException("order not found by given order id"+orderid));
-		return order;
+		Optional<Order> dborder =orderRepository.findById(orderid);
+       Order dbOrder=dborder.get();
+        Order order= new Order();
+        order.setOrderid(dbOrder.getOrderid());
+        List<Lineitem>listlineitems=dbOrder.getLineitems();
+        List<Lineitem>listlineitem=new ArrayList<Lineitem>();for(Lineitem li:listlineitems) {
+        	Lineitem l=new Lineitem();
+        	l.setItemid(li.getItemid());
+        	l.setOrder(order);
+        	l.setPrice(li.getPrice());
+        	l.setProductid(li.getProductid());
+        	l.setProductname(li.getProductname());
+        	l.setQuantity(li.getQuantity());
+            listlineitem.add(l);
+        }
+        order.setLineitems(listlineitem);
+        return order;
 	}
 
 	
