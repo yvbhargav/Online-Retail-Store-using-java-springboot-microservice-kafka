@@ -56,7 +56,7 @@ public class CustomerService {
 	}
 	public Customer get(Long customerid) {
 		Customer customer = customerRepository.findById(customerid).orElseThrow(()-> new RuntimeException("customer not found"));
-		
+		Customer dbcustomer=customer;
 		return customer;
 	}
 
